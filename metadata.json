@@ -1,0 +1,6 @@
+{
+  "name": "تنبيه المواعيد بالفلاش والصوت",
+  "description": "تطبيق تنبيه ذكي بمواعيد ومقابلات العمل والمهام اليومية باستخدام منبه صوتي ناطق ووميض فلاش الهاتف لتسهيل التنبيه والتركيز.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

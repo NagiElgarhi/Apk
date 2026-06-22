@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل المستخدم | تطبيق تنبيه المواعيد بالفلاش والصوت</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+
+        :root {
+            --bg-color: #0f111a;
+            --surface-color: #1b1e30;
+            --card-color: #232742;
+            --primary-color: #ffcc00;
+            --secondary-color: #ff7b00;
+            --accent-green: #34c759;
+            --text-color: #ffffff;
+            --text-muted: #c0c9db;
+            --danger-color: #ff453a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--surface-color);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 204, 0, 0.15);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 204, 0, 0.1);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .logo-area {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--secondary-color);
+            padding-right: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .badge {
+            background-color: rgba(255, 204, 0, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 8dp;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .step-list {
+            list-style: none;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .step-item {
+            background: var(--card-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-number {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .step-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .alert-box {
+            background: rgba(255, 69, 58, 0.1);
+            border-right: 4px solid var(--danger-color);
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: var(--text-color);
+            margin: 25px 0;
+        }
+
+        .success-box {
+            background: rgba(52, 199, 89, 0.1);
+            border-right: 4px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: var(--text-color);
+            margin: 25px 0;
+        }
+
+        .tech-spec {
+            background: #121424;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px dashed rgba(255, 204, 0, 0.2);
+        }
+
+        .tech-spec ul {
+            padding-right: 20px;
+        }
+
+        .tech-spec li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        .tech-spec strong {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 204, 0, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* تنسيقات لوحة القراءة الصوتية للدليل */
+        .audio-control-panel {
+            background: linear-gradient(135deg, var(--card-color) 0%, #1e223a 100%);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 10px;
+        }
+
+        .panel-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .pulse-indicator {
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            display: none;
+            box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
+            animation: audioPulse 1.5s infinite;
+        }
+
+        @keyframes audioPulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(52, 199, 89, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(52, 199, 89, 0);
+            }
+        }
+
+        .panel-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .audio-btn {
+            flex: 1;
+            min-width: 125px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            gap: 6px;
+        }
+
+        .btn-play {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+
+        .btn-play:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-pause {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-pause:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-stop {
+            background-color: var(--danger-color);
+        }
+
+        .btn-stop:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .audio-btn:disabled {
+            background-color: #3b3f5c;
+            color: rgba(255,255,255,0.3);
+            cursor: not-allowed;
+            transform: none !important;
+            opacity: 0.5;
+        }
+
+        .speech-settings {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .setting-item {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .setting-item label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .setting-item input[type="range"] {
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .setting-item select {
+            background: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            padding: 6px;
+            border-radius: 8px;
+            outline: none;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .currently-reading {
+            background: rgba(255, 204, 0, 0.05);
+            border: 1px dashed rgba(255, 204, 0, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .highlight-text {
+            background-color: rgba(255, 204, 0, 0.15) !important;
+            border-right: 4px solid var(--primary-color) !important;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo-area">🔔✨</div>
+            <h1>تطبيق تنبيه المواعيد بالفلاش والصوت</h1>
+            <p class="subtitle">دليل الإعداد والتشغيل كملف APK على الهواتف الذكية</p>
+        </header>
+
+        <!-- لوحة التحكم الصوتية المبتكرة التفاعلية -->
+        <div class="audio-control-panel">
+            <div class="panel-header">
+                <span class="panel-title">🎧 القارئ الصوتي التفاعلي لدليل المستخدم</span>
+                <span class="pulse-indicator" id="speakingIndicator"></span>
+            </div>
+            
+            <p style="font-size: 0.9rem; margin-bottom: 12px; color: var(--text-muted);">
+                يمكنك الاستماع للتسجيل الصوتي الشامل لكافة خطوات الدليل والتعليمات الفنية باللغة العربية مع تلوين فوري للفقرة الحالية.
+            </p>
+
+            <div class="panel-controls">
+                <button id="btnPlay" class="audio-btn btn-play" onclick="startReading()">
+                    <span>🔊 ابدأ القراءة الصوتية</span>
+                </button>
+                <button id="btnPause" class="audio-btn btn-pause" onclick="pauseReading()" disabled>
+                    <span>⏸️ إيقاف مؤقت</span>
+                </button>
+                <button id="btnStop" class="audio-btn btn-stop" onclick="stopReading()" disabled>
+                    <span>⏹️ إيقاف وإعادة ضبط</span>
+                </button>
+            </div>
+
+            <div class="speech-settings">
+                <div class="setting-item">
+                    <label>سرعة القراءة الصوتية: <span id="speedVal" style="color: var(--primary-color); font-weight: bold;">1.0x</span></label>
+                    <input type="range" id="speedRange" min="0.7" max="1.5" step="0.1" value="1.0" oninput="updateSpeedVal(this.value)">
+                </div>
+                <div class="setting-item">
+                    <label>صوت المساعد العربي (TTS):</label>
+                    <select id="voiceSelect" onchange="changeVoice()"></select>
+                </div>
+            </div>
+
+            <div class="currently-reading" id="activeText" style="display: none;">
+                <strong style="color: var(--primary-color); font-size: 0.85rem; display: block; margin-bottom: 4px;">🎯 الفقرة التي يتم نطقها الآن:</strong>
+                <p id="currentSentenceText" style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: #ffffff;"></p>
+            </div>
+        </div>
+
+        <section>
+            <h2>مقدمة عن التطبيق</h2>
+            <p>
+                تم تصميم وتطوير هذا التطبيق خصيصاً لمساعدتك على تنظيم يومك وجدول أعمالك دون تفويت أي موعد حرج. يتميز التطبيق بتقديم 
+                <strong>تنبيهات ثنائية التأثير</strong> تجمع بين:
+            </p>
+            <ul>
+                <li style="margin-right: 20px; margin-bottom: 10px; color: var(--text-muted);">
+                    <strong style="color: var(--primary-color);">التنبيه الصوتي (الناطق):</strong> يقوم الهاتف بنطق اسم الموعد أو جملة التنبيه التي تحددها باللغة العربية بوضوح وتكرارها بشكل دائم ومتقطع لضمان سماعها.
+                </li>
+                <li style="margin-right: 20px; margin-bottom: 10px; color: var(--text-muted);">
+                    <strong style="color: var(--primary-color);">وميض الكاميرا الكثيف (الفلاش):</strong> وهو مفيد جداً في حالات الصمت، أو الضوضاء المحيطة، أو لمن يفضلون التنبيه البصري الفوري بفتح وإغلاق فلاش الهاتف تلقائياً.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>كيفية تثبيت وتشغيل التطبيق كملف APK على الموبايل</h2>
+            <p>يعمل التطبيق على جميع الأجهزة التي تعمل بنظام تشغيل أندرويد (Android OS) بإصداراته الحديثة. اتبع الخطوات التالية لتثبيت التطبيق على هاتفك وتشغيله كملف APK:</p>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <span class="step-number">٠١</span>
+                    <span class="step-title">استخراج وتصدير ملف الـ APK</span>
+                    <span class="step-desc">من خلال شريط أدوات تطوير التطبيق في المتصفح أو بيئة AI Studio، اضغط على زر التصدير (Export) ثم اختر <strong>Generate APK</strong> لبناء وتنزيل ملف الحزمة المباشرة على حاسوبك أو هاتفك.</span>
+                </div>
+
+                <div class="step-item">
+                    <span class="step-number">٠٢</span>
+                    <span class="step-title">نقل الملف وتصريح التثبيت الخارجي</span>
+                    <span class="step-desc">انقل ملف الـ .apk إلى ذاكرة هاتف الأندرويد وافتحه. سيسألك نظام الأندرويد لتأكيد التثبيت من مصادر غير معروفة (Unknown Sources) للمرة الأولى، قم بتفعيل هذا الخيار لإتاحة التنصيب بنجاح.</span>
+                </div>
+
+                <div class="step-item">
+                    <span class="step-number">٠٣</span>
+                    <span class="step-title">منح الصلاحيات اللازمة للتشغيل (مهم جداً)</span>
+                    <span class="step-desc">لكي يعمل الفلاش والصوت بانتظام حتى والهاتف مغلق، اطلب وإمكانية تشغيل الإشعارات والتنبيه الدقيق. تأكد من تفعيل الصلاحيات التالية في إعدادات الهاتف للتطبيق:
+                        <ul style="margin-right: 15px; margin-top: 8px;">
+                            <li>✔️ صلاحية الكاميرا والوصول للفلاش (Camera/Flashlight).</li>
+                            <li>✔️ تفعيل الإشعارات وتنبيهات الخلفية (Notifications).</li>
+                            <li>✔️ صلاحية تشغيل المنبه الدقيق (Exact Alarm Permission).</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>كيف يعمل تطبيق التنبيه المجدول؟</h2>
+            <p>يتميز التطبيق بواجهة مستخدم غاية في السهولة وعصرية مبنية بـ Jetpack Compose وتتبع المعايير الرائدة لـ Material Design 3:</p>
+
+            <div class="step-list">
+                <div class="step-item" style="border-right-color: var(--accent-green);">
+                    <span class="step-title">١. إضافة موعد جديد جدولة دقيقة</span>
+                    <span class="step-desc">اضغط على زر <strong>"جدولة موعد جديد"</strong> في أسفل الشاشة، لتفتح لك واجهة إدخال البيانات المخصصة. قم بإدخال عنوان الموعد ووصفه، ثم اختر التاريخ والوقت بدقة تامة باستخدام منتقي الوقت والتاريخ المدمج.</span>
+                </div>
+
+                <div class="step-item" style="border-right-color: var(--accent-green);">
+                    <span class="step-title">٢. تخصيص طريقة التنبيه</span>
+                    <span class="step-desc">تستطيع لكل موعد وبشكل منفصل تفعيل أو تعطيل نطق اسم الموعد صوتياً عبر مفتاح التشغيل، وكذلك تفعيل أو تعطيل وميض الفلاش. يمكنك أيضاً كتابة نص نطق مخصص ليردده المساعد الصوتي بدلاً من عنوان الموعد الافتراضي.</span>
+                </div>
+
+                <div class="step-item" style="border-right-color: var(--accent-green);">
+                    <span class="step-title">٣. شاشة رنين الطوارئ المنبثقة</span>
+                    <span class="step-desc">عند حلول الوقت المجدول تماماً، يبسط التطبيق تغطية رنين كاملة على الشاشة (Ongoing Active Alarm Loop) حتى وإن كان الهاتف مقفلاً. تومض الشاشة ويتكرر نطق الموعد بالصوت، وينبض فلاش الكاميرا بشكل مستمر لجعلك منتبهاً.</span>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>حماية من استهلاك البطارية:</strong> يحتوى التطبيق على نظام أمان يقوم تلقائياً بإيقاف الفلاش والصوت بعد مرور 45 ثانية متواصلة من عدم الرد لحماية فلاش الكاميرا من درجات الحرارة المرتفعة ومنع استهلاك بطارية الهاتف.
+            </div>
+
+            <div class="alert-box">
+                <strong>تنويه هام للتشغيل في الخلفية:</strong> يرجى استثناء التطبيق من برامج "توفير الطاقة الذكي للبطارية" (Battery Optimization) في هاتفك لضمان عمل منبه الخلفية بدقة متناهية دون أن يغلقه نظام تشغيل الأندرويد فجأة.
+            </div>
+        </section>
+
+        <section class="tech-spec">
+            <h2>المعلومات التقنية للبناء والتشغيل</h2>
+            <ul>
+                <li><strong>لغة البرمجة الأساسية للكود:</strong> Kotlin (Jetpack Compose لمستخلص الواجهات)</li>
+                <li><strong>قاعدة البيانات للتخزين المحلي:</strong> Room (SQLite مجدولة ومحفوظة ذاتياً)</li>
+                <li><strong>الحد الأدنى للتشغيل:</strong> Android SDK 24 (أندرويد نوجا 7.0 وما فوق)</li>
+                <li><strong>آلية تشغيل الفلاش:</strong> Camera2 API مع وميض موازٍ ومتقطع دورته 400 ملي ثانية</li>
+                <li><strong>آلية المساعد الصوتي للتنبيه:</strong> TextToSpeech (TTS API) مع دعم رسمي مسبق للغة العربية بالفصحى</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>دليل المستخدم الرسمي لتطبيق تنبيه المواعيد بالفلاش والصوت - غرض تصفح وتطوير خارجي.</p>
+            <p>© 2026 جميع الحقوق محفوظة لبيئة تطوير AI Studio Build.</p>
+        </footer>
+    </div>
+
+    <script>
+        let speakableItems = [];
+        let currentItemIndex = -1;
+        let isSpeakingState = false;
+        let isPausedState = false;
+        let synth = window.speechSynthesis;
+        let currentUtterance = null;
+        let selectedVoiceName = '';
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initSpeechReader();
+        });
+
+        function initSpeechReader() {
+            // تجميع الفقرات والعناوين المراد قراءتها بالترتيب
+            const items = [];
+            
+            // عنوان الصفحة الفرعي
+            const subtitle = document.querySelector('.subtitle');
+            if (subtitle) items.push(subtitle);
+            
+            // جميع الأقسام والخطوات التقنية المرتبة
+            const sections = document.querySelectorAll('section');
+            sections.forEach(sec => {
+                const header = sec.querySelector('h2');
+                if (header) items.push(header);
+                
+                // البحث في فقرات هذا السكشن أو خطواته الداخلية
+                const children = sec.querySelectorAll('p, .step-item, .success-box, .alert-box, li');
+                children.forEach(child => {
+                    // إذا كان خطوة تشتمل على رقم وعنوان وتفاصيل
+                    if (child.classList.contains('step-item')) {
+                        const num = child.querySelector('.step-number');
+                        const title = child.querySelector('.step-title');
+                        const desc = child.querySelector('.step-desc');
+                        if (num) items.push(num);
+                        if (title) items.push(title);
+                        if (desc) items.push(desc);
+                    } else if (child.closest('.step-item')) {
+                        // تخطي لتجنب تكرار قراءة النصوص الفرعية داخل الـ step-item بشكل منفصل
+                        return;
+                    } else if (child.tagName === 'UL' || child.tagName === 'OL') {
+                        // تخطي الرويت نفسه، نأخذ الـ li بالأسفل
+                        return;
+                    } else {
+                        items.push(child);
+                    }
+                });
+            });
+
+            speakableItems = items;
+
+            // ملء قائمة الأصوات المتاحة للنظام
+            populateVoicesList();
+            if (synth && synth.onvoiceschanged !== undefined) {
+                synth.onvoiceschanged = populateVoicesList;
+            }
+        }
+
+        function populateVoicesList() {
+            if (!synth) return;
+            const voices = synth.getVoices();
+            const select = document.getElementById('voiceSelect');
+            select.innerHTML = '<option value="default">🗣️ صوت النظام الافتراضي العربي</option>';
+
+            // البحث عن أصوات اللغة العربية
+            const arabicVoices = voices.filter(voice => voice.lang.startsWith('ar'));
+            arabicVoices.forEach(voice => {
+                const option = document.createElement('option');
+                option.value = voice.name;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                select.appendChild(option);
+            });
+
+            // تعيين الصوت الافتراضي إن وجد
+            if (arabicVoices.length > 0 && !selectedVoiceName) {
+                selectedVoiceName = arabicVoices[0].name;
+                select.value = selectedVoiceName;
+            }
+        }
+
+        function changeVoice() {
+            const select = document.getElementById('voiceSelect');
+            selectedVoiceName = select.value;
+            if (isSpeakingState) {
+                // إعادة تشغيل الفقرة الصوتية لتطبيق الصوت الجديد فورياً
+                playCurrentItem();
+            }
+        }
+
+        function updateSpeedVal(val) {
+            document.getElementById('speedVal').textContent = parseFloat(val).toFixed(1) + 'x';
+            if (isSpeakingState && !isPausedState) {
+                // إعادة تشغيل الفقرة لتطبيق السرعة الجديدة
+                playCurrentItem();
+            }
+        }
+
+        function startReading() {
+            if (!synth) {
+                alert("عذراً، محرك نطق النصوص غير مدعوم في متصفحك الحالي.");
+                return;
+            }
+
+            if (isPausedState) {
+                synth.resume();
+                isPausedState = false;
+                updateControls();
+                return;
+            }
+
+            isSpeakingState = true;
+            isPausedState = false;
+            
+            if (currentItemIndex === -1) {
+                currentItemIndex = 0;
+            }
+            
+            playCurrentItem();
+        }
+
+        function playCurrentItem() {
+            if (currentItemIndex < 0 || currentItemIndex >= speakableItems.length) {
+                resetAll();
+                return;
+            }
+
+            synth.cancel(); // إيقاف أي قراءة نشطة فوراً
+
+            const currentElement = speakableItems[currentItemIndex];
+            
+            // إزالة التلوين عن الفقرات السابقة
+            clearAllHighlights();
+            
+            // تلوين الفقرة النشطة وجلبها لمنتصف الشاشة بسلاسة
+            currentElement.classList.add('highlight-text');
+            currentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // إظهار نص الفقرة المقروءة أسفل لوحة التحكم
+            const txt = currentElement.innerText || currentElement.textContent;
+            document.getElementById('activeText').style.display = 'block';
+            document.getElementById('currentSentenceText').textContent = txt;
+
+            // إعداد جملة النطق
+            const utterance = new SpeechSynthesisUtterance(txt);
+            
+            // تطبيق السرعة المختارة
+            const speedInput = document.getElementById('speedRange');
+            utterance.rate = parseFloat(speedInput.value) || 1.0;
+
+            // تحديد اللغة العربية افتراضياً
+            utterance.lang = 'ar-EG';
+
+            // تحديد الصوت المختار
+            const voices = synth.getVoices();
+            const activeVoice = voices.find(v => v.name === selectedVoiceName);
+            if (activeVoice) {
+                utterance.voice = activeVoice;
+            }
+
+            utterance.onend = () => {
+                // الانتقال للفقرة التالية تلقائياً عند انتهاء الحالية
+                if (isSpeakingState && !isPausedState) {
+                    currentItemIndex++;
+                    playCurrentItem();
+                }
+            };
+
+            utterance.onerror = (e) => {
+                console.error("Speech error:", e);
+                // المضي قدماً بالرغم من أي خطأ
+                if (isSpeakingState && !isPausedState) {
+                    currentItemIndex++;
+                    setTimeout(playCurrentItem, 100);
+                }
+            };
+
+            currentUtterance = utterance;
+            synth.speak(utterance);
+            updateControls();
+        }
+
+        function pauseReading() {
+            if (synth && isSpeakingState && !isPausedState) {
+                synth.pause();
+                isPausedState = true;
+                updateControls();
+            }
+        }
+
+        function stopReading() {
+            resetAll();
+        }
+
+        function resetAll() {
+            if (synth) {
+                synth.cancel();
+            }
+            clearAllHighlights();
+            currentItemIndex = -1;
+            isSpeakingState = false;
+            isPausedState = false;
+            document.getElementById('activeText').style.display = 'none';
+            updateControls();
+        }
+
+        function clearAllHighlights() {
+            speakableItems.forEach(item => {
+                item.classList.remove('highlight-text');
+            });
+        }
+
+        function updateControls() {
+            const btnPlay = document.getElementById('btnPlay');
+            const btnPause = document.getElementById('btnPause');
+            const btnStop = document.getElementById('btnStop');
+            const indicator = document.getElementById('speakingIndicator');
+
+            if (isSpeakingState) {
+                if (isPausedState) {
+                    btnPlay.innerHTML = "<span>▶️ استئناف القراءة</span>";
+                    btnPlay.disabled = false;
+                    btnPause.disabled = true;
+                    indicator.style.display = 'none';
+                } else {
+                    btnPlay.innerHTML = "<span>🔊 جاري القراءة الآن...</span>";
+                    btnPlay.disabled = true;
+                    btnPause.disabled = false;
+                    indicator.style.display = 'block';
+                }
+                btnStop.disabled = false;
+            } else {
+                btnPlay.innerHTML = "<span>🔊 ابدأ القراءة الصوتية</span>";
+                btnPlay.disabled = false;
+                btnPause.disabled = true;
+                btnStop.disabled = true;
+                indicator.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
